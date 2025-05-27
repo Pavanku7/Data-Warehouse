@@ -1,0 +1,69 @@
+-- Databricks notebook source
+-- MAGIC %md
+-- MAGIC ### Data warehouse
+-- MAGIC * central location or reporistory to store every single piece of data.
+-- MAGIC * used for reporting 
+-- MAGIC * Performance will not be degraded
+-- MAGIC
+-- MAGIC ### Database 
+-- MAGIC * where data stored in the form of rows and columns or table
+-- MAGIC * Data stored in the Transaction form
+-- MAGIC * cant use direclty for reporting, bcoz the table will be busy in transaction
+-- MAGIC * querying data in DB performance will degraded
+-- MAGIC
+-- MAGIC ### Data Warehousing
+-- MAGIC   Process that you follow to fetch data from database and store it into DWH
+-- MAGIC
+-- MAGIC ### ETL - Extract Transform Load
+-- MAGIC * Pull data from DB
+-- MAGIC * will go inside DWH layer- 2layers
+-- MAGIC   1. Staging - get the data in raw form
+-- MAGIC     * Transient layer --- Truncate the data
+-- MAGIC     * Persistence --- Keeps the data
+-- MAGIC   2. Core - most curated data in the core layer
+-- MAGIC
+-- MAGIC ### Data Marts
+-- MAGIC * Data marts are the subset of data warehouse, which holds the data about specific domains (like: HR, Finance, Banking etc)
+-- MAGIC
+-- MAGIC
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC ### Data Modeling
+-- MAGIC * In order to efficiently store the data without any redudance and in order to save cost we need modeling
+-- MAGIC * its a process to structure your data
+-- MAGIC
+-- MAGIC ### Types of Data-Model
+-- MAGIC * Conceptual - this model hold High level bussiness need/requirements ( Products/Customer/Sales etc)
+-- MAGIC * Logical - where we define the logic to connect diff tables using joins,keys,attributes,relationship,ER.
+-- MAGIC * Physical - Actuall data table resides in DB, with all constraints etc
+-- MAGIC
+-- MAGIC ### Dimensional Data Modeling
+-- MAGIC * store your data in Fact and Dimensions Tables
+-- MAGIC
+-- MAGIC ## Fact Table
+-- MAGIC * its the only table where data is stored in most granular level. we do not perform aggregation on Fact table.
+-- MAGIC * Store only the numeric values, and Dimkeys/ Foreign keys which connect small dim table
+-- MAGIC ### Types of Fact Table
+-- MAGIC   * Granular/Transaction fact table:
+-- MAGIC     1 transaction = 1 row
+-- MAGIC   * Periodic fact table:
+-- MAGIC     snapshot table
+-- MAGIC   * Accumulating fact table:
+-- MAGIC     1row = describe the journey/process
+-- MAGIC
+-- MAGIC ## Dimension Table
+-- MAGIC * its only holds the context of the table
+-- MAGIC * it contains the numeric values which can be used for aggregation
+-- MAGIC ### Types of Dimension Table
+-- MAGIC   * Confirmed dimensions:
+-- MAGIC     when 1 dimension table is shared between multiple fact table
+-- MAGIC   * Role Playing dimensions:
+-- MAGIC     when we connect fact table with dimension table on multiple condition/ relationship 
+-- MAGIC   * Junk dimensions:
+-- MAGIC     when there is a series of None value or junk data in dimension table 
+-- MAGIC   * Degenerate dimensions:
+-- MAGIC     when we dont have any contextual value for column and if we create a dimension table on top of that then it will have only 1 column its called Degenerate dimension
+-- MAGIC
+-- MAGIC
